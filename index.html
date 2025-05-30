@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +13,23 @@
 
     <main>
         <h1>Editor Pila</h1>
-        <section class="textarea__section">
-
-            <textarea name="inserción" id="textarea_1"></textarea> <!--texarea de escritura-->
-            <textarea name="visualización" id="textarea_2"></textarea> <!--texarea de -->
-
-        </section>
+        <div class="textarea__section">
+            <section class="write__section">
+                <textarea name="inserción" id="textarea_1"></textarea> <!--texarea de escritura-->
+                <div class="button__container">
+                    <button>UNDO</button>
+                    <button>REDO</button>
+                </div>
+            </section>
+            <!-- contenedor de visualización -->
+            <section class="visualization__section">
+                <textarea name="visualización_B" id="textarea_2"></textarea> <!--texarea de -->
+                <textarea name="visualización_A" id="textarea_3"></textarea>
+            </section>
+        </div>
     </main>
 
     <script src="index.js"></script>
 </body>
+
 </html>

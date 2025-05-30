@@ -6,7 +6,7 @@ main{
     align-content: center;
 
 }
-
+    /* contenedor de textareas */
 .textarea__section{
     display: flex;
     justify-content: center;
@@ -15,15 +15,36 @@ main{
     width: 100%;
 }
 
+.write__section{
+    display: flex;
+    flex-direction: column;
+    width: 57%;
+    gap: 10px;
+}
+
 textarea{
     height: 100%;
     resize: none;
 }
 
-#textarea_1{
-    width: 57%;
+/* textareas de visualización */
+.visualization__section{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 10px;
 }
 
-#textarea_2{
+.button__container{
+    display: flex;
+    height: 60px;
+    justify-content: space-around;
+}
+
+button{
     width: 30%;
+}
+
+#textarea_3{
+
 }
