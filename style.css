@@ -1,3 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Prata&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root{
+    --primary-font: 'krona one';
+    --secondary-font: 'Courier';
+}
+
 body{
-    background-color: rgb(48, 41, 41);
+    background-color: rgb(32, 29, 29);
+    font-family: var(--primary-font);
+    border-radius: 10px;
+}
+
+h1{
+    color:greenyellow;
+}
+
+textarea{
+    border: solid 1.5px greenyellow;
+    border-radius: 10px;
+    background-color: rgb(32, 29, 29);
+    color: rgb(179, 200, 104);
+    box-shadow: greenyellow 1px 1px 5px;
+}
+
+/* area de escritura */
+.write__textarea{
+    font-size: 1.6rem;
+}
+
+button{
+    background-color: greenyellow;
+    border: none;
+    border-radius: 8px;
+    outline: black;
+    font-family: var(--primary-font);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+button:hover{
+    opacity: 87%;
+}
+
+/* area de visualizacion */
+.stack__A,.stack__B{
+    font-family: var(--secondary-font);
+    font-size: medium;
 }
