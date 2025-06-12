@@ -42,6 +42,10 @@ button{
 button:hover{
     opacity: 87%;
 }
+button:disabled{
+    fill-opacity: 10%;
+    cursor: not-allowed;
+}
 
 /* area de visualizacion */
 .stack__A,.stack__B{
