@@ -30,6 +30,7 @@ let outputStackA = document.getElementById('textarea_stack_A');
 let outputStackB = document.getElementById('textarea_stack_B');
 
 let searchWord = /\s*[A-Za-z0-9]+\b/gm;
+let filteredWord;
 
 //botones
 const buttonA = document.getElementById('button_A');
@@ -47,7 +48,6 @@ const viewStacks = () => {// actualizar textareas de stacks con cada cambio
 [
     ${viewStackB}
 ]`;
-
 }
 
 const activateDesactivateButton = (input)=> {
@@ -65,13 +65,18 @@ const activateDesactivateButton = (input)=> {
     }
 }
 
+input.addEventListener("change",()=>{
+    filteredWord = input.value.match(searchWord);
+    
+});
+
 buttonA.addEventListener("click", () => {
-    let filteredWord = input.value.match(searchWord);
     let lastElementStackB = Stack.stackB[Stack.stackB.length - 1];
     if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
         for (let i = 0; i < filteredWord.length; i++) {
             Stack.insertStackA = filteredWord[i];
         }
+        input.value = "";
     } else if (Stack.stackB.length > 0) {
         Stack.insertStackA = lastElementStackB;
     }
@@ -80,7 +85,6 @@ buttonA.addEventListener("click", () => {
 });
 
 buttonB.addEventListener("click", () => {
-    let filteredWord = input.value.match(searchWord);    
     let lastElementStackA = Stack.stackA[Stack.stackA.length - 1];
     Stack.insertStackB = lastElementStackA;
     activateDesactivateButton(filteredWord);
