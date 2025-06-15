@@ -50,35 +50,39 @@ const viewStacks = () => {// actualizar textareas de stacks con cada cambio
 
 }
 
-function activateDesactivateButton() {
-    if (Stack.stackB.length === 0) {
-        buttonA.setAttribute("disabled", "disabled");
-        buttonB.removeAttribute("disabled");
-    } else if (Stack.stackA.length === 0) {
-        buttonB.setAttribute("disabled", "disabled");
+const activateDesactivateButton = (input)=> {
+    if(Stack.stackA.length === input.length) {
+        buttonA.setAttribute("disabled","disabled");
+    }else if(Stack.stackA.length < input.length){
         buttonA.removeAttribute("disabled");
+        
+    }
+    if(Stack.stackB.length === input.length) {
+        buttonB.setAttribute("disabled","disabled");
+    }else if(Stack.stackB.length < input.length){
+        buttonB.removeAttribute("disabled");
+        
     }
 }
 
 buttonA.addEventListener("click", () => {
     let filteredWord = input.value.match(searchWord);
-    let lastElementStackB = Stack.stackB[Stack.stackB.length - 1]
-
+    let lastElementStackB = Stack.stackB[Stack.stackB.length - 1];
     if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
         for (let i = 0; i < filteredWord.length; i++) {
             Stack.insertStackA = filteredWord[i];
         }
-        input.value = "";
     } else if (Stack.stackB.length > 0) {
         Stack.insertStackA = lastElementStackB;
     }
-    activateDesactivateButton();
+    activateDesactivateButton(filteredWord);
     viewStacks();
 });
 
 buttonB.addEventListener("click", () => {
+    let filteredWord = input.value.match(searchWord);    
     let lastElementStackA = Stack.stackA[Stack.stackA.length - 1];
     Stack.insertStackB = lastElementStackA;
-    activateDesactivateButton();
+    activateDesactivateButton(filteredWord);
     viewStacks();
 });
