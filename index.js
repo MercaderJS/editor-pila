@@ -29,7 +29,7 @@ let outputStackA = document.getElementById('textarea_stack_A');
 // textarea pila B
 let outputStackB = document.getElementById('textarea_stack_B');
 
-let searchWord = /\s*[A-Za-z0-9]+\b/gm;
+let searchWord = /[A-Za-z0-9]+\b/gm;
 let filteredWord;
 
 //botones
