@@ -16,6 +16,11 @@ class stack {
         }
     }
 
+    clearStack() {
+      this.stackA = [];
+      this.stackB = [];
+    }
+
 }
 
 let Stack = new stack();
@@ -62,11 +67,17 @@ const activateDesactivateButton = (input)=> {
     }else if(Stack.stackB.length < input.length){
         buttonB.removeAttribute("disabled");
         
+    }else if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
+      buttonA.removeAttribute("disabled");
+      buttonB.removeAttribute("disabled");
     }
 }
 
-input.addEventListener("change",()=>{
+input.addEventListener("input",()=>{
+    Stack.clearStack();
     filteredWord = input.value.match(searchWord);
+    viewStacks();
+    activateDesactivateButton(filteredWord);
     
 });
 
