@@ -21,6 +21,8 @@ textarea{
     background-color: rgb(32, 29, 29);
     color: rgb(179, 200, 104);
     box-shadow: greenyellow 1px 1px 5px;
+    padding-inline: 13px;
+    background-color:rgb(45, 42, 42);
 }
 
 /* area de escritura */
@@ -49,6 +51,18 @@ button:disabled{
 
 /* area de visualizacion */
 .stack__A,.stack__B{
+    border: solid 1.5px greenyellow;
+    border-radius: 10px;
+    background-color: rgb(32, 29, 29);
+    color: rgb(179, 200, 104);
+    box-shadow: greenyellow 1px 1px 5px;
     font-family: var(--secondary-font);
-    font-size: medium;
+    font-size: 1.3rem;
+    overflow-y: auto;
+    background-color:rgb(45, 42, 42);
+}
+
+strong{
+    color: rgb(72, 109, 255);
+    font-weight: 700;
 }

@@ -16,19 +16,30 @@
         <div class="textarea__section">
 
             <section class="write__section">
-                <textarea name="inserción" id="textarea_write" placeholder="Ingresar texto..." class="write__textarea"></textarea> <!--texarea de escritura-->
+                <textarea name="inserción" id="textarea_write" placeholder="Ingresar texto..."
+                    class="write__textarea"></textarea> <!--texarea de escritura-->
                 <div class="button__container">
-                    <button id="button_A">UNDO</button>
-                    <button id="button_B">REDO</button>
+                    <button id="button_A">Stack A</button>
+                    <button id="button_B">Stack B</button>
                 </div>
             </section>
 
             <!-- contenedor de visualización -->
             <section class="visualization__section">
-                <textarea name="visualización_B" id="textarea_stack_A" readonly placeholder="Pila A" class="stack__A"></textarea> <!--texarea de -->
-                <textarea name="visualización_A" id="textarea_stack_B" readonly placeholder="Pila B" class="stack__B"></textarea>
+                <!--  visualizacion de stack_A -->
+                <div name="visualización_B" id="output_stack_A" class="stack__A">
+                    <p class="output__Stack">
+
+                    </p>
+                </div>
+                <!-- visualizacion de stack_B -->
+                <div name="visualización_A" id="output_stack_B" class="stack__B">
+                    <p class="output__Stack">
+
+                    </p>
+                </div>
             </section>
-            
+
         </div>
     </main>
 
