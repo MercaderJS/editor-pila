@@ -60,6 +60,7 @@ button:disabled{
     font-size: 1.3rem;
     overflow-y: auto;
     background-color:rgb(45, 42, 42);
+    padding: 10px;
 }
 
 strong{
