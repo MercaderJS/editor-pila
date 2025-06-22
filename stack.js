@@ -20,28 +20,18 @@ class stack {
         this.stackA = [];
         this.stackB = [];
     }
-
 }
 
 let Stack = new stack();
-
-// textarea de escritura
 const input = document.getElementById('textarea_write');
-
-// textarea pila A
 let outputStackA = document.getElementById('output_stack_A');
-
-// textarea pila B
 let outputStackB = document.getElementById('output_stack_B');
-
 let searchWord = /[A-Za-z0-9]+\b/gm;
 let filteredWord;
-
-//botones
 const buttonA = document.getElementById('button_A');
 const buttonB = document.getElementById('button_B');
 
-const viewStacks = () => {// actualizar textareas de stacks con cada cambio 
+const viewStacks = () => {
     let viewStackA = Stack.stackA.map((element, index) => `<strong>${index}:</strong>${element} `);
     let viewStackB = Stack.stackB.map((element, index) => `<strong>${index}:</strong>${element} `);
     outputStackA.innerHTML = `PILA A:
@@ -102,4 +92,4 @@ buttonB.addEventListener("click", () => {
     viewStacks();
 });
 
-document.querySelector("body").addEventListener("load",viewStacks());
+document.querySelector("body").addEventListener("load", viewStacks);

@@ -1,36 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Prata&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
-:root{
+:root {
     --primary-font: 'krona one';
     --secondary-font: 'Courier';
 }
 
-body{
+body {
     background-color: rgb(32, 29, 29);
     font-family: var(--primary-font);
     border-radius: 10px;
 }
 
-h1{
-    color:greenyellow;
+h1 {
+    color: greenyellow;
 }
 
-textarea{
+textarea {
     border: solid 1.5px greenyellow;
     border-radius: 10px;
     background-color: rgb(32, 29, 29);
     color: rgb(179, 200, 104);
     box-shadow: greenyellow 1px 1px 5px;
     padding-inline: 13px;
-    background-color:rgb(45, 42, 42);
+    background-color: rgb(45, 42, 42);
 }
 
-/* area de escritura */
-.write__textarea{
+.write__textarea {
     font-size: 1.6rem;
 }
 
-button{
+button {
     background-color: greenyellow;
     border: none;
     border-radius: 8px;
@@ -41,16 +40,17 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+button:hover {
     opacity: 87%;
 }
-button:disabled{
+
+button:disabled {
     fill-opacity: 10%;
     cursor: not-allowed;
 }
 
-/* area de visualizacion */
-.stack__A,.stack__B{
+.stack__A,
+.stack__B {
     border: solid 1.5px greenyellow;
     border-radius: 10px;
     background-color: rgb(32, 29, 29);
@@ -59,11 +59,11 @@ button:disabled{
     font-family: var(--secondary-font);
     font-size: 1.3rem;
     overflow-y: auto;
-    background-color:rgb(45, 42, 42);
+    background-color: rgb(45, 42, 42);
     padding: 10px;
 }
 
-strong{
+strong {
     color: rgb(72, 109, 255);
     font-weight: 700;
 }
