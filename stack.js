@@ -1,0 +1,95 @@
+class stack {
+    constructor() {
+        this.stackA = [];
+        this.stackB = [];
+    }
+
+    set insertStackA(value) {
+        this.stackA.push(value);
+        this.stackB.pop(value);
+    }
+
+    set insertStackB(value) {
+        if (this.stackA.length > 0) {
+            this.stackB.push(value);
+            this.stackA.pop(value);
+        }
+    }
+
+    clearStack() {
+        this.stackA = [];
+        this.stackB = [];
+    }
+}
+
+let Stack = new stack();
+const input = document.getElementById('textarea_write');
+let outputStackA = document.getElementById('output_stack_A');
+let outputStackB = document.getElementById('output_stack_B');
+let searchWord = /[A-Za-z0-9]+\b/gm;
+let filteredWord;
+const buttonA = document.getElementById('button_A');
+const buttonB = document.getElementById('button_B');
+
+const viewStacks = () => {
+    let viewStackA = Stack.stackA.map((element, index) => `<strong>${index}:</strong>${element} `);
+    let viewStackB = Stack.stackB.map((element, index) => `<strong>${index}:</strong>${element} `);
+    outputStackA.innerHTML = `PILA A:
+[
+    ${viewStackA}
+]`;
+
+    outputStackB.innerHTML = `PILA B:
+[
+    ${viewStackB}
+]`;
+}
+
+const activateDesactivateButton = (input) => {
+    if (Stack.stackA.length === input.length) {
+        buttonA.setAttribute("disabled", "disabled");
+    } else if (Stack.stackA.length < input.length) {
+        buttonA.removeAttribute("disabled");
+
+    }
+    if (Stack.stackB.length === input.length) {
+        buttonB.setAttribute("disabled", "disabled");
+    } else if (Stack.stackB.length < input.length) {
+        buttonB.removeAttribute("disabled");
+
+    } else if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
+        buttonA.removeAttribute("disabled");
+        buttonB.removeAttribute("disabled");
+    }
+}
+
+input.addEventListener("input", () => {
+    Stack.clearStack();
+    filteredWord = input.value.match(searchWord);
+    viewStacks();
+    activateDesactivateButton(filteredWord);
+
+});
+
+buttonA.addEventListener("click", () => {
+    let lastElementStackB = Stack.stackB[Stack.stackB.length - 1];
+    if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
+        for (let i = 0; i < filteredWord.length; i++) {
+            Stack.insertStackA = filteredWord[i];
+        }
+        input.value = "";
+    } else if (Stack.stackB.length > 0) {
+        Stack.insertStackA = lastElementStackB;
+    }
+    activateDesactivateButton(filteredWord);
+    viewStacks();
+});
+
+buttonB.addEventListener("click", () => {
+    let lastElementStackA = Stack.stackA[Stack.stackA.length - 1];
+    Stack.insertStackB = lastElementStackA;
+    activateDesactivateButton(filteredWord);
+    viewStacks();
+});
+
+document.querySelector("body").addEventListener("load", viewStacks);
