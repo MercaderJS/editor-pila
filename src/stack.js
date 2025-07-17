@@ -23,13 +23,10 @@ class stack {
 }
 
 let Stack = new stack();
-const input = document.getElementById('textarea_write');
 let outputStackA = document.getElementById('output_stack_A');
 let outputStackB = document.getElementById('output_stack_B');
 let searchWord = /[A-Za-z0-9]+\b/gm;
 let filteredWord;
-const buttonA = document.getElementById('button_A');
-const buttonB = document.getElementById('button_B');
 
 const viewStacks = () => {
     let viewStackA = Stack.stackA.map((element, index) => `<strong>${index}:</strong>${element} `);
@@ -45,33 +42,38 @@ const viewStacks = () => {
 ]`;
 }
 
-const activateDesactivateButton = (input) => {
-    if (Stack.stackA.length === input.length) {
-        buttonA.setAttribute("disabled", "disabled");
-    } else if (Stack.stackA.length < input.length) {
-        buttonA.removeAttribute("disabled");
-
-    }
-    if (Stack.stackB.length === input.length) {
-        buttonB.setAttribute("disabled", "disabled");
-    } else if (Stack.stackB.length < input.length) {
-        buttonB.removeAttribute("disabled");
-
-    } else if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
-        buttonA.removeAttribute("disabled");
-        buttonB.removeAttribute("disabled");
-    }
-}
-
-input.addEventListener("input", () => {
+const actionInput = () => {
     Stack.clearStack();
     filteredWord = input.value.match(searchWord);
     viewStacks();
-    activateDesactivateButton(filteredWord);
+};
 
-});
+const stackAfull = () => {
+    if (Stack.stackA.length === filteredWord.length) {
+        return true;
+    } else if (Stack.stackA.length < filteredWord.length) {
+        return false;
+    }
 
-buttonA.addEventListener("click", () => {
+}
+
+const stackBfull = () => {
+    if (Stack.stackB.length === filteredWord.length) {
+        return true;
+    } else if (Stack.stackB.length < filteredWord.length) {
+        return false;
+    }
+
+}
+
+const stackEmpty = () =>{
+    if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
+        return false;
+    }
+}
+
+
+const actionButtonA = (input) => {//input de textarea
     let lastElementStackB = Stack.stackB[Stack.stackB.length - 1];
     if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
         for (let i = 0; i < filteredWord.length; i++) {
@@ -81,15 +83,15 @@ buttonA.addEventListener("click", () => {
     } else if (Stack.stackB.length > 0) {
         Stack.insertStackA = lastElementStackB;
     }
-    activateDesactivateButton(filteredWord);
     viewStacks();
-});
+};
 
-buttonB.addEventListener("click", () => {
+const actionButtonB = () => {
     let lastElementStackA = Stack.stackA[Stack.stackA.length - 1];
     Stack.insertStackB = lastElementStackA;
-    activateDesactivateButton(filteredWord);
     viewStacks();
-});
+};
 
 document.querySelector("body").addEventListener("load", viewStacks);
+
+export { stackBfull,stackAfull,stackEmpty,actionButtonA,actionButtonB,actionInput };
