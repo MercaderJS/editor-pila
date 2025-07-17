@@ -1,4 +1,4 @@
-import { stackAfull,stackBfull,viewStacks,stackEmpty,actionButtonA,actionButtonB,actionInput } from "./stack";
+import { stackAfull,stackBfull,viewStacks,stackEmpty,actionButtonA,actionButtonB,actionInput } from "./stack.js";
 
 
 let stack = {

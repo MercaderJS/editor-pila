@@ -28,7 +28,7 @@ let outputStackB = document.getElementById('output_stack_B');
 let searchWord = /[A-Za-z0-9]+\b/gm;
 let filteredWord;
 
-const viewStacks = () => {
+export const viewStacks = () => {
     let viewStackA = Stack.stackA.map((element, index) => `<strong>${index}:</strong>${element} `);
     let viewStackB = Stack.stackB.map((element, index) => `<strong>${index}:</strong>${element} `);
     outputStackA.innerHTML = `PILA A:
@@ -42,13 +42,13 @@ const viewStacks = () => {
 ]`;
 }
 
-const actionInput = () => {
+export const actionInput = () => {
     Stack.clearStack();
     filteredWord = input.value.match(searchWord);
     viewStacks();
 };
 
-const stackAfull = () => {
+export const stackAfull = () => {
     if (Stack.stackA.length === filteredWord.length) {
         return true;
     } else if (Stack.stackA.length < filteredWord.length) {
@@ -57,7 +57,7 @@ const stackAfull = () => {
 
 }
 
-const stackBfull = () => {
+export const stackBfull = () => {
     if (Stack.stackB.length === filteredWord.length) {
         return true;
     } else if (Stack.stackB.length < filteredWord.length) {
@@ -66,14 +66,14 @@ const stackBfull = () => {
 
 }
 
-const stackEmpty = () =>{
+export const stackEmpty = () =>{
     if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
         return false;
     }
 }
 
 
-const actionButtonA = (input) => {//input de textarea
+export const actionButtonA = (input) => {//input de textarea
     let lastElementStackB = Stack.stackB[Stack.stackB.length - 1];
     if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
         for (let i = 0; i < filteredWord.length; i++) {
@@ -86,7 +86,7 @@ const actionButtonA = (input) => {//input de textarea
     viewStacks();
 };
 
-const actionButtonB = () => {
+export const actionButtonB = () => {
     let lastElementStackA = Stack.stackA[Stack.stackA.length - 1];
     Stack.insertStackB = lastElementStackA;
     viewStacks();
@@ -94,4 +94,4 @@ const actionButtonB = () => {
 
 document.querySelector("body").addEventListener("load", viewStacks);
 
-export { stackBfull,stackAfull,stackEmpty,actionButtonA,actionButtonB,actionInput };
+// export { stackBfull,stackAfull,stackEmpty,actionButtonA,actionButtonB,actionInput };
