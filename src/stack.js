@@ -42,9 +42,9 @@ export const viewStacks = () => {
 ]`;
 }
 
-export const actionInput = () => {
+export const actionInput = (input) => {
     Stack.clearStack();
-    filteredWord = input.value.match(searchWord);
+    filteredWord = input.match(searchWord);
     viewStacks();
 };
 
@@ -68,10 +68,9 @@ export const stackBfull = () => {
 
 export const stackEmpty = () =>{
     if (Stack.stackA.length === 0 && Stack.stackB.length === 0) {
-        return false;
+        return true;
     }
 }
-
 
 export const actionButtonA = (input) => {//input de textarea
     let lastElementStackB = Stack.stackB[Stack.stackB.length - 1];
@@ -79,7 +78,7 @@ export const actionButtonA = (input) => {//input de textarea
         for (let i = 0; i < filteredWord.length; i++) {
             Stack.insertStackA = filteredWord[i];
         }
-        input.value = "";
+        input = "";
     } else if (Stack.stackB.length > 0) {
         Stack.insertStackA = lastElementStackB;
     }
@@ -91,7 +90,3 @@ export const actionButtonB = () => {
     Stack.insertStackB = lastElementStackA;
     viewStacks();
 };
-
-document.querySelector("body").addEventListener("load", viewStacks);
-
-// export { stackBfull,stackAfull,stackEmpty,actionButtonA,actionButtonB,actionInput };
