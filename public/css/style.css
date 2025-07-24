@@ -49,8 +49,8 @@ button:disabled {
     cursor: not-allowed;
 }
 
-.stack__A,
-.stack__B {
+.output__A,
+.output__B {
     border: solid 1.5px greenyellow;
     border-radius: 10px;
     background-color: rgb(32, 29, 29);

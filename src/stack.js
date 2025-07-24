@@ -23,8 +23,8 @@ class stack {
 }
 
 let Stack = new stack();
-let outputStackA = document.getElementById('output_stack_A');
-let outputStackB = document.getElementById('output_stack_B');
+let outputStackA = document.getElementById('output-A');
+let outputStackB = document.getElementById('output-B');
 let searchWord = /[A-Za-z0-9]+\b/gm;
 let filteredWord;
 

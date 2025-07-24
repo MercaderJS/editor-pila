@@ -16,11 +16,11 @@
         <div class="textarea__section">
 
             <section class="write__section">
-                <select name="cambiar de estructura" id="option-structure" class="select__structure" >
-                        <option value="array" >Array</option>
-                        <option value="lista">Lista</option>
-                        <option value="cola">Cola</option>
-                        <option value="pila" selected>Pila</option>
+                <select name="cambiar de estructura" id="option-structure" class="select__structure">
+                    <option value="array">Array</option>
+                    <option value="lista">Lista</option>
+                    <option value="cola">Cola</option>
+                    <option value="pila" selected>Pila</option>
                 </select>
                 <textarea name="inserción" id="textarea_write" placeholder="Ingresar texto..."
                     class="write__textarea"></textarea>
@@ -31,13 +31,13 @@
             </section>
 
             <section class="visualization__section">
-                <div name="visualización_B" id="output_stack_A" class="stack__A">
-                    <p class="output__Stack">
+                <div name="visualización_A" id="output-A" class="output__A">
+                    <p class="output__element">
 
                     </p>
                 </div>
-                <div name="visualización_A" id="output_stack_B" class="stack__B">
-                    <p class="output__Stack">
+                <div name="visualización_B" id="output-B" class="output__B">
+                    <p class="output__element">
 
                     </p>
                 </div>
@@ -48,12 +48,13 @@
 
     <script src="./src/structures.js" type="module"></script>
     <dialog id="dialog-array">
-      <div>
-        <p id="alert-dialog-array">Elija el i     ndice</p>                                 <ul>
-          
-      </ul>
-      <p id="alert-error"></p>
-      </div>
+        <div>
+            <p id="alert-dialog-array">Elija el indice</p>
+            <ul>
+
+            </ul>
+            <p id="alert-error"></p>
+        </div>
     </dialog>
 </body>
 
