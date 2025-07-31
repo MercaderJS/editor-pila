@@ -42,7 +42,9 @@ class array {//tener en cuenta que este array es dinamico y el metodo de elimina
 let Array = new array();
 let outputA = document.getElementById('output-A');
 let outputB = document.getElementById('output-B');
-let dialogElements = document.querySelector("dialog");
+let dialog = document.querySelector("dialog");
+let elementsDialog = document.getElementById("list-elements");
+let indexElementsDialog = document.getElementById("list-index");
 let searchWord = /[A-Za-z0-9]+\b/gm;
 let filteredWord;
 
@@ -72,7 +74,7 @@ export const actionButtonA = (input) => {
         Array.addElementArrayA = filteredWord;
         input.value = "";
     } else {
-        dialogElements.showModal();
+        dialog.showModal();
     }
 
 }
