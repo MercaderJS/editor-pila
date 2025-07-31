@@ -54,13 +54,26 @@ export const viewElements = () => {
     let viewArrayB = Array.arrayB.map((element, index) => `<strong>${index}:</strong>${element} `);
     outputA.innerHTML = `CONTENEDOR A:
 [
-    ${viewArrayA}
+    ${viewArrayA} 
 ]`;
 
     outputB.innerHTML = `CONTENEDOR B:
 [
     ${viewArrayB}
 ]`;
+}
+
+const viewElementsDialog = (arr) => {
+    elementsDialog.innerHTML = arr.map((element) => {
+      `<li id="element-dialog">
+           ${element}
+       </li>
+      `
+    });
+  indexElementsDialog.innerHTML = arr.map((elemnt,index) => {                                   `<li id="element-dialog">                         ${index}
+       </li>           
+      `
+  });
 }
 
 export const actionInput = (input) => {
@@ -75,6 +88,6 @@ export const actionButtonA = (input) => {
         input.value = "";
     } else {
         dialog.showModal();
-    }
+  }
 
 }
