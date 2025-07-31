@@ -47,12 +47,24 @@
     </main>
 
     <script src="./src/structures.js" type="module"></script>
+    <script src="./src/array.js"></script>
     <dialog id="dialog-array">
+        <button id="button_cancel"></button>
         <div>
-            <p id="alert-dialog-array">Elija el indice</p>
-            <ul>
+            <div class="list__element--container">
+                <h4 class="list__element--title">Elejir elemento</h4>
 
-            </ul>
+                <ul class="list__element" id="lis-element">
+                    
+                </ul>
+            </div>
+            <div class="list__index--container" id="index-container">
+                <h4 class="list__index--title">Elejir posicion de inserción</h4>
+                <ul class="list__index" id="list-index">
+
+                </ul>
+                <button id="button-index" class="button__dialog">Aceptar</button>
+            </div>
             <p id="alert-error"></p>
         </div>
     </dialog>
