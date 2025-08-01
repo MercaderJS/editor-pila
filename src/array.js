@@ -1,7 +1,7 @@
 class array {//tener en cuenta que este array es dinamico y el metodo de eliminacion de cada elemento se descartó
     constructor() {
-        this.arrayA = [];
-        this.arrayB = [];
+        this.arrayA = ["dhdw", "j9wdj9w", "dw9dhw9"];
+        this.arrayB = ["dhdw", "j9wdj9w", "dw9dhw9"];
     }
 
     addElementArrayA(index, element) {
@@ -42,14 +42,13 @@ class array {//tener en cuenta que este array es dinamico y el metodo de elimina
 let Array = new array();
 let outputA = document.getElementById('output-A');
 let outputB = document.getElementById('output-B');
-let dialog = document.querySelector("dialog");
-let elementsDialog = document.getElementById("list-elements");
+let elementsDialog = document.getElementById("list-element");
 let indexElementsDialog = document.getElementById("list-index");
 let searchWord = /[A-Za-z0-9]+\b/gm;
 let filteredWord;
 
 
-export const viewElements = () => {
+const viewElements = () => {
     let viewArrayA = Array.arrayA.map((element, index) => `<strong>${index}:</strong>${element} `);
     let viewArrayB = Array.arrayB.map((element, index) => `<strong>${index}:</strong>${element} `);
     outputA.innerHTML = `CONTENEDOR A:
@@ -64,30 +63,33 @@ export const viewElements = () => {
 }
 
 const viewElementsDialog = (arr) => {
-    elementsDialog.innerHTML = arr.map((element) => {
-      `<li id="element-dialog">
-           ${element}
-       </li>
-      `
-    });
-  indexElementsDialog.innerHTML = arr.map((elemnt,index) => {                                   `<li id="element-dialog">                         ${index}
-       </li>           
-      `
-  });
+    return arr.map((element, index) => `<li value="${element}">${element}</li>`);
 }
 
-export const actionInput = (input) => {
+const viewIndexDialog = (arr) => {
+    return arr.map((element, index) => `<li value="${element}">${index}</li>`);
+}
+
+const actionInput = (input) => {
     Array.deleteAllElements();
     filteredWord = input.match(searchWord);
     viewElements();
 };
 
-export const actionButtonA = (input) => {
+const actionButtonA = (input) => {
     if (Array.arrayA.length === 0 && Array.arrayB.length === 0) {
         Array.addElementArrayA = filteredWord;
         input.value = "";
     } else {
-        dialog.showModal();
-  }
-
+    }
+    
 }
+
+document.getElementById("button_A").addEventListener("click",()=>{
+    let dialog = document.querySelector("dialog");
+    dialog.showModal();
+    document.getElementById("list-element").innerHTML = viewElementsDialog(Array.arrayA);
+    document.getElementById("list-index").innerHTML = viewIndexDialog(Array.arrayA);
+
+
+})
