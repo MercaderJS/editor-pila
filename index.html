@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="flexbox.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./public/css/flexbox.css">
+    <link rel="stylesheet" href="./public/css/reset.css">
+    <link rel="stylesheet" href="./public/css/style.css">
     <title>Editor-pila</title>
 </head>
 
@@ -16,6 +16,12 @@
         <div class="textarea__section">
 
             <section class="write__section">
+                <select name="cambiar de estructura" id="option-structure" class="select__structure">
+                    <option value="array">Array</option>
+                    <option value="lista">Lista</option>
+                    <option value="cola">Cola</option>
+                    <option value="pila" selected>Pila</option>
+                </select>
                 <textarea name="inserción" id="textarea_write" placeholder="Ingresar texto..."
                     class="write__textarea"></textarea>
                 <div class="button__container">
@@ -25,13 +31,13 @@
             </section>
 
             <section class="visualization__section">
-                <div name="visualización_B" id="output_stack_A" class="stack__A">
-                    <p class="output__Stack">
+                <div name="visualización_A" id="output-A" class="output__A">
+                    <p class="output__element">
 
                     </p>
                 </div>
-                <div name="visualización_A" id="output_stack_B" class="stack__B">
-                    <p class="output__Stack">
+                <div name="visualización_B" id="output-B" class="output__B">
+                    <p class="output__element">
 
                     </p>
                 </div>
@@ -40,7 +46,28 @@
         </div>
     </main>
 
-    <script src="stack.js"></script>
+    <!-- <script src="./src/structures.js" type="module"></script> -->
+    <script src="./src/array.js"></script>
+    <dialog id="dialog-array">
+        <button id="button_cancel"></button>
+        <div>
+            <div id="element-container">
+                <h4 class="list__element--title">Elejir elemento</h4>
+
+                <ul class="list__element" id="list-element">
+                    
+                </ul>
+            </div>
+            <div class="list__index--container" id="index-container">
+                <h4 class="list__index--title">Elejir posicion de inserción</h4>
+                <ul class="list__index" id="list-index">
+
+                </ul>
+                <button id="button-dialog" class="button__dialog">Aceptar</button>
+            </div>
+            <p id="alert-error"></p>
+        </div>
+    </dialog>
 </body>
 
 </html>

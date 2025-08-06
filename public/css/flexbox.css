@@ -36,14 +36,14 @@ textarea {
     width: 30%;
 }
 
-.stack__A,
-.stack__B {
+.output__A,
+.output__B {
     width: 100%;
     height: 50%;
     flex-wrap: wrap;
 }
 
-.output__Stack {
+.output__element {
     margin-inline: 15px;
 }
 
