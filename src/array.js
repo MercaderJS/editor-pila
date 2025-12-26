@@ -1,16 +1,23 @@
 class array {//tener en cuenta que este array es dinamico y el metodo de eliminacion de cada elemento se descartó
     constructor() {
-        this.arrayA = ["dhdw", "j9wdj9w", "dw9dhw9"];
-        this.arrayB = ["dhdw", "j9wdj9w", "dw9dhw9"];
+        this.arrayA = [];
+        this.arrayB = [];
     }
 
     addElementArrayA(index, element) {
-        if (this.arrayA.length === 0) {
+        if (this.arrayB.length === 0 && this.arrayA.length >= 0) {
             this.arrayA.push(element);
 
-        } else {
-            this.arrayA.splice(index, 1, element);
-            this.arrayB.pop(element);
+        } else if (this.arrayA.length === 0) {
+            this.arrayA.push(element);
+
+        } else if (this.arrayA.length > 0 && this.arrayB.length > 0){
+            if (index[1] === null) {
+                this.arrayA.push(element);
+            } else {
+                this.arrayA.splice(index[1], 1, element);
+            }
+            this.arrayB.splice(index[0]);
         }
     }
 
@@ -36,16 +43,28 @@ class array {//tener en cuenta que este array es dinamico y el metodo de elimina
     getElementArrayB(index) {
         return this.arrayB[index];
     }
-
+    
 }
 
+// arrays 
 let Array = new array();
 let outputA = document.getElementById('output-A');
 let outputB = document.getElementById('output-B');
-let elementsDialog = document.getElementById("list-element");
-let indexElementsDialog = document.getElementById("list-index");
 let searchWord = /[A-Za-z0-9]+\b/gm;
 let filteredWord;
+
+// dialog
+let dialog;
+let buttonDialog;
+let elementDialogSelected;
+let indexesDialogSelected = [];
+let ulElementsDialog = document.getElementById("list-element");
+let ulIndexElementsDialog = document.getElementById("list-index");
+let elementsDialog;
+let indexElementsDialog;
+let isDialogArrayA;
+
+let input = document.getElementById("textarea_write");
 
 
 const viewElements = () => {
@@ -63,33 +82,82 @@ const viewElements = () => {
 }
 
 const viewElementsDialog = (arr) => {
-    return arr.map((element, index) => `<li value="${element}">${element}</li>`);
+    return arr.map((element, index) => `<li id="element-dialog" value="${element}">${element}</li>`);
 }
 
 const viewIndexDialog = (arr) => {
-    return arr.map((element, index) => `<li value="${element}">${index}</li>`);
+    return arr.map((element, index) => `<li id="index-element-dialog" value="${element}">${index}</li>`);
 }
 
-const actionInput = (input) => {
+const actionInput = (index,input) => {
     Array.deleteAllElements();
     filteredWord = input.match(searchWord);
+    for (let i = 0; i < filteredWord.length; i++) {
+        Array.addElementArrayA(index,filteredWord[i]);
+        
+    }
     viewElements();
 };
 
-const actionButtonA = (input) => {
-    if (Array.arrayA.length === 0 && Array.arrayB.length === 0) {
-        Array.addElementArrayA = filteredWord;
-        input.value = "";
-    } else {
-    }
+// const actionButtonA = (input) => {
+//     if (Array.arrayA.length === 0 && Array.arrayB.length === 0) {
+//         Array.addElementArrayA(filteredWord);
+//         input.value = "";
+//     }
     
+// }
+
+const getDataDialog = (index,element)=> {
+    buttonDialog = document.getElementById("button-dialog");
+
+    if (isDialogArrayA) {
+        buttonDialog.addEventListener("click", ()=> {
+            Array.addElementArrayA(index,element);
+        });
+        
+    } else {
+        
+    }
 }
 
 document.getElementById("button_A").addEventListener("click",()=>{
-    let dialog = document.querySelector("dialog");
+    isDialogArrayA = true;
+    dialog = document.querySelector("dialog");
+    buttonDialog = document.getElementById("button-dialog");
+    
+    document.getElementById("list-element").innerHTML = viewElementsDialog(Array.arrayB);
+    document.getElementById("list-index").innerHTML = viewIndexDialog(Array.arrayB);
+    elementsDialog = document.querySelectorAll("#element-dialog");
+    indexElementsDialog = document.querySelectorAll("#index-element-dialog");
+
+    if (input.value !== "") {
+        actionInput(indexesDialogSelected,input.value);
+        input.value = ""
+        console.log(Array);
+        
+    } else {
+        
     dialog.showModal();
-    document.getElementById("list-element").innerHTML = viewElementsDialog(Array.arrayA);
-    document.getElementById("list-index").innerHTML = viewIndexDialog(Array.arrayA);
+    elementsDialog.forEach((element, index)=> element.addEventListener("click",()=> {
+        indexesDialogSelected.splice(0, 1, index);
+        elementDialogSelected = element.getAttribute("value");
+        
+    }));
 
+    indexElementsDialog.forEach((element, index)=> element.addEventListener("click", ()=>{
+        indexesDialogSelected.splice(1, 1, index);
+        
+    }));
+    
+    buttonDialog.addEventListener("click", ()=> {
+        getDataDialog(indexesDialogSelected, elementDialogSelected);
+        elementDialogSelected = [];
+        indexesDialogSelected = null;
+        isDialogArrayA = false;
+        dialog.close();
+        
+    })
+}
+});
 
-})
+viewElements();
