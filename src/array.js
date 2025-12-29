@@ -1,22 +1,19 @@
 class array {//tener en cuenta que este array es dinamico y el metodo de eliminacion de cada elemento se descartó
     constructor() {
         this.arrayA = [];
-        this.arrayB = [];
+        this.arrayB = [1,2,3];
     }
 
     addElementArrayA(index, element) {
+        if (element === null) {
+            return;
+        }
         if (this.arrayB.length === 0 && this.arrayA.length >= 0) {
             this.arrayA = [...element];
-
         } 
         else if (this.arrayA.length >= 0 && this.arrayB.length > 0){
-            if (index[1] === undefined) {
-                this.arrayA.push(element);
-
-            } else if (index[1] !== undefined){
-                this.arrayA.splice(index[1], 0, element);
-                
-            }
+            index[1] === undefined ? this.arrayA.push(element) : this.arrayA.splice(index[1], 0, element);
+            this.arrayB.splice(index[0],1)
         }
     }
 
@@ -24,7 +21,7 @@ class array {//tener en cuenta que este array es dinamico y el metodo de elimina
         if (this.arrayA.length <= 0) {
             return;
         } else {
-            this.arrayB.splice(index, 1, element);
+            this.arrayB.splice(index[1], 1, element);
             this.arrayA.pop(element);
 
         }
