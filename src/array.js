@@ -1,7 +1,7 @@
 class array {//tener en cuenta que este array es dinamico y el metodo de eliminacion de cada elemento se descartó
     constructor() {
-        this.arrayA = [];
-        this.arrayB = [1,2,3];
+        this.arrayA = [1,2,3];
+        this.arrayB = [];
     }
 
     addElementArrayA(index, element) {
@@ -13,17 +13,18 @@ class array {//tener en cuenta que este array es dinamico y el metodo de elimina
         } 
         else if (this.arrayA.length >= 0 && this.arrayB.length > 0){
             index[1] === undefined ? this.arrayA.push(element) : this.arrayA.splice(index[1], 0, element);
-            this.arrayB.splice(index[0],1)
+            this.arrayB.splice(index[0],1);
         }
     }
 
     addElementArrayB(index, element) {
-        if (this.arrayA.length <= 0) {
+        if (element === null) {
+            return
+        } if (this.arrayA.length === 0) {
             return;
-        } else {
-            this.arrayB.splice(index[1], 1, element);
-            this.arrayA.pop(element);
-
+        } else if (this.arrayB.length >= 0 && this.arrayA.length > 0) {
+            index[1] === undefined ? this.arrayB.push(element) : this.arrayB.splice(index[1], 0, element);
+            this.arrayA.splice(index[0],1);            
         }
     }
 
@@ -93,13 +94,13 @@ const actionInput = (index,input) => {
     viewElements();
 };
 
-const getDataDialog = (index,element)=> {
-    if (isDialogArrayA) {
-            Array.addElementArrayA(index,element);
-            viewElements()
-    } else {
-        
-    }
+const getDataDialog = (index,element)=> {// ==========Averiguar porque se ejecuta mas de una vez tras cada llamada=========
+    isDialogArrayA ? Array.addElementArrayA(index,element) : Array.addElementArrayB(index,element);
+    viewElements();
+    console.log(isDialogArrayA);
+    console.log(index,element);
+    
+    
 }
 
 const actionButtonA = (input) => {
@@ -144,8 +145,39 @@ const actionButtonA = (input) => {
 }
 
 
-document.getElementById("button_A").addEventListener("click",()=>{
-    actionButtonA(input);
+document.getElementById("button_B").addEventListener("click",()=>{
+    isDialogArrayA = false;
+    dialog = document.querySelector("dialog");
+    buttonDialog = document.getElementById("button-dialog");
+    
+    document.getElementById("list-element").innerHTML = viewElementsDialog(Array.arrayA);
+    document.getElementById("list-index").innerHTML = viewIndexDialog(Array.arrayB);
+    elementsDialog = document.querySelectorAll("#element-dialog");
+    indexElementsDialog = document.querySelectorAll("#index-element-dialog");
+
+    dialog.showModal();
+    elementsDialog.forEach((element, index)=> element.addEventListener("click",()=> {
+        indexesDialogSelected.splice(0, 1, index);
+        elementDialogSelected = element.getAttribute("value");
+        
+    }));
+
+    indexElementsDialog.forEach((element, index)=> element.addEventListener("click", ()=>{
+        indexesDialogSelected.splice(1, 1, index);
+        
+    }));
+
+    buttonDialog.addEventListener("click", ()=> {
+        getDataDialog(indexesDialogSelected, elementDialogSelected);
+        viewElements()
+        elementDialogSelected = null;
+        indexesDialogSelected = [];
+        isDialogArrayA = true;
+        dialog.close(); 
+        return;
+    })
 }
 );
+
+document.getElementById("button_A").addEventListener("click", ()=> actionButtonA(input))
 viewElements()
