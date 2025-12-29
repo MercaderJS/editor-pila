@@ -6,18 +6,17 @@ class array {//tener en cuenta que este array es dinamico y el metodo de elimina
 
     addElementArrayA(index, element) {
         if (this.arrayB.length === 0 && this.arrayA.length >= 0) {
-            this.arrayA.push(element);
+            this.arrayA = [...element];
 
-        } else if (this.arrayA.length === 0) {
-            this.arrayA.push(element);
-
-        } else if (this.arrayA.length > 0 && this.arrayB.length > 0){
-            if (index[1] === null) {
+        } 
+        else if (this.arrayA.length >= 0 && this.arrayB.length > 0){
+            if (index[1] === undefined) {
                 this.arrayA.push(element);
-            } else {
-                this.arrayA.splice(index[1], 1, element);
+
+            } else if (index[1] !== undefined){
+                this.arrayA.splice(index[1], 0, element);
+                
             }
-            this.arrayB.splice(index[0]);
         }
     }
 
@@ -86,54 +85,39 @@ const viewElementsDialog = (arr) => {
 }
 
 const viewIndexDialog = (arr) => {
-    return arr.map((element, index) => `<li id="index-element-dialog" value="${element}">${index}</li>`);
+    return arr.map((element, index) => `<li id="index-element-dialog" value="${index}">${index}</li>`);
 }
 
 const actionInput = (index,input) => {
     Array.deleteAllElements();
     filteredWord = input.match(searchWord);
-    for (let i = 0; i < filteredWord.length; i++) {
-        Array.addElementArrayA(index,filteredWord[i]);
+        Array.addElementArrayA(index,filteredWord);
         
-    }
     viewElements();
 };
 
-// const actionButtonA = (input) => {
-//     if (Array.arrayA.length === 0 && Array.arrayB.length === 0) {
-//         Array.addElementArrayA(filteredWord);
-//         input.value = "";
-//     }
-    
-// }
-
 const getDataDialog = (index,element)=> {
-    buttonDialog = document.getElementById("button-dialog");
-
     if (isDialogArrayA) {
-        buttonDialog.addEventListener("click", ()=> {
             Array.addElementArrayA(index,element);
-        });
-        
+            viewElements()
     } else {
         
     }
 }
 
-document.getElementById("button_A").addEventListener("click",()=>{
+const actionButtonA = (input) => {
     isDialogArrayA = true;
     dialog = document.querySelector("dialog");
     buttonDialog = document.getElementById("button-dialog");
     
     document.getElementById("list-element").innerHTML = viewElementsDialog(Array.arrayB);
-    document.getElementById("list-index").innerHTML = viewIndexDialog(Array.arrayB);
+    document.getElementById("list-index").innerHTML = viewIndexDialog(Array.arrayA);
     elementsDialog = document.querySelectorAll("#element-dialog");
     indexElementsDialog = document.querySelectorAll("#index-element-dialog");
 
     if (input.value !== "") {
         actionInput(indexesDialogSelected,input.value);
-        input.value = ""
-        console.log(Array);
+        input.value = "";
         
     } else {
         
@@ -148,16 +132,23 @@ document.getElementById("button_A").addEventListener("click",()=>{
         indexesDialogSelected.splice(1, 1, index);
         
     }));
-    
+
     buttonDialog.addEventListener("click", ()=> {
-        getDataDialog(indexesDialogSelected, elementDialogSelected);
-        elementDialogSelected = [];
-        indexesDialogSelected = null;
+        getDataDialog(indexesDialogSelected, elementDialogSelected)
+        viewElements()
+        elementDialogSelected = null;
+        indexesDialogSelected = [];
         isDialogArrayA = false;
-        dialog.close();
-        
+        dialog.close(); 
+        return;
     })
 }
-});
 
-viewElements();
+}
+
+
+document.getElementById("button_A").addEventListener("click",()=>{
+    actionButtonA(input);
+}
+);
+viewElements()
