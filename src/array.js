@@ -128,7 +128,7 @@ const actionButtonA = (input) => {
         elementDialogSelected = null;
         indexesDialogSelected = [];
         isDialogArrayA = false;
-        dialog.close(); 
+        dialog.close();
         return;
     })
 }
@@ -169,16 +169,33 @@ const actionButtonB = ()=> {
     
 }
 
-const arraysEmpty = ()=> {
-    Array.arrayA.length === 0 &&  Array.arrayB.length === 0 ?  true : false;
+const stateButtons = (button)=> {
+    if (Array.arrayA.length === 0 &&  Array.arrayB.length === 0){
+        button.setAttribute("disabled","disabled");
+    }
+    else{
+        button.removeAttribute("disabled");
+    } 
 }
 
-const arrayAfull = ()=> {
-    Array.arrayA.length > 0 && Array.arrayB.length === 0 ? true : false;
+const stateButtonA = (button)=> {
+    if(Array.arrayA.length > 0 && Array.arrayB.length == 0){
+        button.setAttribute("disabled","disabled");
+        console.log("A");
+        
+    } else {
+        button.removeAttribute("disabled");
+    }
 }
 
-const arrayBfull = ()=> {
-    Array.arrayB.length > 0 && Array.arrayA.length === 0 ? true : false;
+const stateButtonB = (button)=> {
+    if (Array.arrayB.length > 0 && Array.arrayA.length == 0){
+        button.setAttribute("disabled","disabled");
+        console.log("B");
+        
+    } else {
+        button.removeAttribute("disabled");
+    }
 }
 
 export const structureArray = {
@@ -186,7 +203,7 @@ export const structureArray = {
     "actionInput": actionInput,
     "actionButtonA": actionButtonA,
     "actionButtonB": actionButtonB,
-    "stateButtons" : arraysEmpty,
-    "stateButtonA":  arrayAfull,
-    "stateButtonB":  arrayBfull
+    "stateButtons" : stateButtons,
+    "stateButtonA":  stateButtonA,
+    "stateButtonB":  stateButtonB
 }
