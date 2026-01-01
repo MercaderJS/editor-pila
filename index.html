@@ -17,10 +17,10 @@
 
             <section class="write__section">
                 <select name="cambiar de estructura" id="option-structure" class="select__structure">
-                    <option value="array">Array</option>
-                    <option value="lista">Lista</option>
-                    <option value="cola">Cola</option>
-                    <option value="pila" selected>Pila</option>
+                    <option data-structure="array" value="array">Array</option>
+                    <option data-structure="lista" value="lista">Lista</option>
+                    <option data-structure="cola" value="cola">Cola</option>
+                    <option data-structure="pila" value="pila">Pila</option>
                 </select>
                 <textarea name="inserción" id="textarea_write" placeholder="Ingresar texto..."
                     class="write__textarea"></textarea>
@@ -47,7 +47,7 @@
     </main>
 
     <!-- <script src="./src/structures.js" type="module"></script> -->
-    <script src="./src/array.js"></script>
+    <script src="./src/structures.js" type="module"></script>
     <dialog id="dialog-array">
         <button id="button_cancel"></button>
         <div>
