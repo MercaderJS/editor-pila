@@ -1,7 +1,7 @@
 import { stackAfull, stackBfull, viewStacks, stackEmpty, actionButtonA, actionButtonB, actionInput } from "./stack.js";
-
+import  { structureArray } from "./array.js";
 let structure;
-let selectStructure = document.querySelector("select").value;
+let selectStructure = document.querySelectorAll("option");
 let input = document.getElementById("textarea_write");
 let buttonA = document.getElementById("button_A");
 let buttonB = document.getElementById("button_B");
@@ -37,32 +37,41 @@ let stack = {
     actionInput,
 };
 
+// structure = structureArray;
 
-switch (selectStructure) {
-    case "pila": structure = stack;
-        break;
-    //     case array: 
-    //     case lista:
-    //     case cola:
-}
-
+// selectStructure.forEach((option)=>{
+//     let opt = option.getAttribute("data-structure");
+//     option.addEventListener("click", ()=> {
+//         switch(opt){
+//             case "array": structure = structureArray;
+//                 break;
+//             case "pila": structure = stack;
+//             default: structure = structureArray;
+//                 break;
+//             }
+//     })
+// });
+structure = structureArray;
 input.addEventListener("input", () => {
-    structure.actionInput(input.value);
+    structure.actionInput(input);
+    structure.viewData();
     activateButtonA();
     desactivateButtonB()
 });
 
 buttonA.addEventListener("click", () => {
-    structure.actionbuttonA();
-    structure.stateButtonA();
-    structure.stateButtonB();
+    structure.actionButtonA(input);
+    structure.stateButtonA(buttonA);
+    structure.stateButtonB(buttonB);
+    structure.viewData();
     input.value = "";
 });
 
 buttonB.addEventListener("click", () => {
-    structure.actionbuttonB();
-    structure.stateButtonB();
-    structure.stateButtonA();
+    structure.actionButtonB();
+    structure.stateButtonB(buttonB);
+    structure.stateButtonA(buttonA);
+    structure.viewData();
 });
 
-document.querySelector("body").addEventListener("load", structure.viewData());
+structure.viewData();

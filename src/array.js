@@ -163,7 +163,8 @@ const actionButtonB = ()=> {
         elementDialogSelected = null;
         indexesDialogSelected = [];
         isDialogArrayA = true;
-        dialog.close(); 
+        dialog.close();
+        viewData();
         return;
     });
     
@@ -179,7 +180,7 @@ const stateButtons = (button)=> {
 }
 
 const stateButtonA = (button)=> {
-    if(Array.arrayA.length > 0 && Array.arrayB.length == 0){
+    if(Array.arrayA.length > 0 && Array.arrayB.length === 0){
         button.setAttribute("disabled","disabled");
         console.log("A");
         
